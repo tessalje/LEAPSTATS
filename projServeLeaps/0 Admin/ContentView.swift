@@ -27,7 +27,7 @@ struct ContentView: View {
                 InfoView()
             }
             
-            Tab("Notification", systemImage: "bell.fill") {
+            Tab("Notification", systemImage: "bell") {
                 NotificationView()
             }
         }
