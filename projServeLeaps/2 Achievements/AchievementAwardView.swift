@@ -179,7 +179,9 @@ struct AchievementsAwardsView: View {
                                     representation: selectedRepresent,
                                     year: selectedYears
                                 ) { success in
-                                    if success { resetForm() }
+                                    if success {
+                                        resetForm()
+                                    }
                                 }
                             } else {
                                 achievementsData.addAchievement(
@@ -193,12 +195,12 @@ struct AchievementsAwardsView: View {
                             }
                         }
                     }
+                    
                     if editingIndex != nil {
                         Button("Delete") {
                             if let index = editingIndex {
                                 achievementsData.removeAchievement(at: index)
                                 resetForm()
-                                
                             }
                         }
                         .foregroundColor(.red)

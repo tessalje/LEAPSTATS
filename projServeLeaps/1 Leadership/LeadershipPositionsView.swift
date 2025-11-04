@@ -117,6 +117,8 @@ struct LeadershipPositionView: View {
 }
 
 struct LeadershipPositionSheet: View {
+    @State private var searchText = ""
+    @State private var showingSearchResults = false
     @EnvironmentObject var dataManager: LeadershipData
     @Binding var selectedPosition: String
     @Binding var selectedYear: Int

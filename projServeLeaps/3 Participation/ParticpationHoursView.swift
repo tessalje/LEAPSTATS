@@ -110,7 +110,6 @@ struct ParticipationHourView: View {
                 }
             }
             .onAppear {
-                // Fetch both Firebase and Google Sheets data on appear
                 participation.fetchParticipation()
                 participation.fetchGoogleSheetsData(studentName: user.name)
             }
@@ -129,7 +128,7 @@ struct ParticipationHourViewDetailed: View {
         NavigationView {
             VStack(spacing: 20) {
                 
-                // Main Hexagon Display
+                //Main Hexagon Display
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color.gray.opacity(0.05))
@@ -142,7 +141,7 @@ struct ParticipationHourViewDetailed: View {
                             ParticipationHexagon2Advanced(participationData: participation)
                         }
                         
-                        // Data source toggle
+                        //Data source toggle
                         Button(action: {
                             showingDataSource.toggle()
                         }) {
@@ -189,7 +188,7 @@ struct ParticipationHourViewDetailed: View {
                     .padding(.horizontal)
                 }
                 
-                // Additional Google Sheets records (if any)
+                //extra Google Sheets records
                 if participation.googleSheetsService.cellPairs.count > 1 {
                     Text("Additional Records:")
                         .font(.headline)
@@ -198,7 +197,7 @@ struct ParticipationHourViewDetailed: View {
                     ScrollView {
                         LazyVStack(spacing: 8) {
                             ForEach(Array(participation.googleSheetsService.cellPairs.enumerated()), id: \.element.id) { index, pair in
-                                if index > 0 { // Skip first one as it's shown in main display
+                                if index > 0 { // Skip first one as its shown in main display
                                     HStack {
                                         Text("Row \(pair.rowNumber)")
                                             .font(.caption)

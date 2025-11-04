@@ -78,6 +78,7 @@ struct HomeView: View {
                         ParticipationHourView()
                     }
                     .offset(x: -dx, y: dyShort)
+                    .disabled(true)
                     
                     // Top-left
                     HexagonButton(

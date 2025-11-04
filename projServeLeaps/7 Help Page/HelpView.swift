@@ -113,13 +113,11 @@ struct HelpView: View {
                         Text("Acknowledgements")
                     }
                     
-                    Section {
-                        
-                        Text("For any queries or feedbacks, contact codexleaps2.0@gmail.com")
-                            .font(.title3)
-                    } header: {
-                        Text("Contact")
-                    }
+                Link(destination: URL(string: "https://mail.google.com/mail/?view=cm&fs=1&to=codexleaps2.0@gmail.com&su=Feedback&body=Hi%20CodeX,"
+                    )!
+                ) {
+                    Label("Send as a feedback: codexleaps2.0@gmail.com", systemImage: "envelope.fill")
+                }
                 
             }
             .navigationTitle("Others")

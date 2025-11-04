@@ -1,3 +1,10 @@
+//
+//  ProfileView.swift
+//  projServeLeaps
+//
+//  Created by Tessa on 26/6/25.
+//
+
 import SwiftUI
 import PhotosUI
 
@@ -10,7 +17,7 @@ extension Color {
 }
 
 struct ProfileView: View {
-    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var userdata: UserData
     @State private var showLogoutAlert = false
     @EnvironmentObject var userManager: UserManager
 
@@ -51,23 +58,23 @@ struct ProfileView: View {
             ScrollView {
                 VStack {
                     Spacer()
-                    ImagePickerView(selectedImageData: $userData.profileImageData)
+                    ImagePickerView(selectedImageData: $userdata.profileImageData)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 200, height: 100)
                     Spacer()
                     
-                    Text(userData.name)
+                    Text(userdata.name)
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    Text("Class of \(userData.year, format: .number.grouping(.never))")
+                    Text("Batch of \(userdata.year, format: .number.grouping(.never))")
                         .font(.title2)
                     
                     Spacer()
                     
-                    ProfileHexagonView(title: userData.house, color: BackColorHouse(for: userData.house))
+                    ProfileHexagonView(title: userdata.house, color: BackColorHouse(for: userdata.house))
                     
-                    Picker("house", selection: $userData.house) {
+                    Picker("house", selection: $userdata.house) {
                         ForEach(house, id: \.self) { houseName in
                             Text(houseName)
                                 .foregroundStyle(.white)
@@ -77,14 +84,14 @@ struct ProfileView: View {
                     .padding(5)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(BackColorHouse(for: userData.house))
+                            .fill(BackColorHouse(for: userdata.house))
                     )
-                    .animation(.easeInOut, value: userData.house)
+                    .animation(.easeInOut, value: userdata.house)
                     
                     Spacer()
-                    ProfileHexagonView(title: userData.cca, color: BackColorCCA(for: userData.cca))
+                    ProfileHexagonView(title: userdata.cca, color: BackColorCCA(for: userdata.cca))
                     
-                    Picker("cca", selection: $userData.cca) {
+                    Picker("cca", selection: $userdata.cca) {
                         ForEach(cca, id: \.self) { cca in
                             Text(cca)
                         }
@@ -92,7 +99,7 @@ struct ProfileView: View {
                     .tint(.white)
                     .padding(5)
                     .background(RoundedRectangle(cornerRadius: 12))
-                    .foregroundColor(BackColorCCA(for: userData.cca))
+                    .foregroundColor(BackColorCCA(for: userdata.cca))
                     .padding(.bottom, 20)
                     
                     Button(role: .destructive) {
@@ -123,7 +130,7 @@ struct ProfileView: View {
                     }
                     .foregroundColor(.black)
                     .sheet(isPresented: $isPresentedPopUp) {
-                        EditView(userData: userData, selectedImageData: $userData.profileImageData)
+                        EditView(userData: userdata, selectedImageData: $userdata.profileImageData)
                     }
                 }
             }
@@ -142,6 +149,7 @@ struct ImagePickerView: View {
                 if let selectedImageData, let uiImage = UIImage(data: selectedImageData) {
                     Image(uiImage: uiImage)
                         .resizable()
+                        .frame(width: 120, height: 120)
                         .aspectRatio(contentMode: .fill)
                         .clipShape(Circle())
                 } else {
@@ -169,6 +177,8 @@ struct EditView: View {
     @State private var showLogoutAlert = false
     @EnvironmentObject var userManager: UserManager
     
+    let currentYear = Calendar.current.component(.year, from: Date())
+    
     var body: some View {
         NavigationStack {
             List {
@@ -176,8 +186,9 @@ struct EditView: View {
                     Text("My profile pic")
                         .bold()
                     ImagePickerView(selectedImageData: $selectedImageData)
-                        .frame(width: 120, height: 150)
+                        .frame(width: 120, height: 120)
                 }
+                
                 HStack {
                     Text("My Name")
                     TextField("Name", text: $userData.name)
@@ -185,10 +196,15 @@ struct EditView: View {
                         .frame(width: 150, height: 20)
                 }
                 
-                Picker("My graduating year", selection: $userData.year) {
-                    ForEach(2025...2222, id: \.self) { year in
-                        Text("\(year, format: .number.grouping(.never))")
+                HStack {
+                    Text("Year I joined SST")
+                    Picker("My Sec 1 year", selection: $userData.year) {
+                        ForEach(1900...(currentYear + 20), id: \.self) { year in
+                            Text("\(year, format: .number.grouping(.never))")
+                        }
                     }
+                    .pickerStyle(.wheel)
+                    .frame(height: 80)
                 }
                 
                 // Logout Button
