@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5F473CD12E0AF6330052964B"
-               BuildableName = "projServeLeaps.app"
-               BlueprintName = "projServeLeaps"
-               ReferencedContainer = "container:projServeLeaps.xcodeproj">
+               BuildableName = "LEAPStats.app"
+               BlueprintName = "LEAPStats"
+               ReferencedContainer = "container:LEAPStats.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F473CD12E0AF6330052964B"
-            BuildableName = "projServeLeaps.app"
-            BlueprintName = "projServeLeaps"
-            ReferencedContainer = "container:projServeLeaps.xcodeproj">
+            BuildableName = "LEAPStats.app"
+            BlueprintName = "LEAPStats"
+            ReferencedContainer = "container:LEAPStats.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5F473CD12E0AF6330052964B"
-            BuildableName = "projServeLeaps.app"
-            BlueprintName = "projServeLeaps"
-            ReferencedContainer = "container:projServeLeaps.xcodeproj">
+            BuildableName = "LEAPStats.app"
+            BlueprintName = "LEAPStats"
+            ReferencedContainer = "container:LEAPStats.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

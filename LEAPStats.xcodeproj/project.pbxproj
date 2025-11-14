@@ -38,7 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5F473CD22E0AF6330052964B /* projServeLeaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = projServeLeaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F473CD22E0AF6330052964B /* LEAPStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LEAPStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C88FB8442E14365C00EED778 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,7 @@
 		5F473CD32E0AF6330052964B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5F473CD22E0AF6330052964B /* projServeLeaps.app */,
+				5F473CD22E0AF6330052964B /* LEAPStats.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5F473CD12E0AF6330052964B /* projServeLeaps */ = {
+		5F473CD12E0AF6330052964B /* LEAPStats */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5F473CE02E0AF6360052964B /* Build configuration list for PBXNativeTarget "projServeLeaps" */;
+			buildConfigurationList = 5F473CE02E0AF6360052964B /* Build configuration list for PBXNativeTarget "LEAPStats" */;
 			buildPhases = (
 				5F473CCE2E0AF6330052964B /* Sources */,
 				5F473CCF2E0AF6330052964B /* Frameworks */,
@@ -123,7 +123,7 @@
 			fileSystemSynchronizedGroups = (
 				5F473CD42E0AF6330052964B /* projServeLeaps */,
 			);
-			name = projServeLeaps;
+			name = LEAPStats;
 			packageProductDependencies = (
 				C88FB8912E1437CC00EED778 /* FirebaseAI */,
 				C88FB8932E1437CC00EED778 /* FirebaseAnalytics */,
@@ -154,7 +154,7 @@
 				C88FB8C52E1438F300EED778 /* FirebaseVertexAI */,
 			);
 			productName = projServeLeaps;
-			productReference = 5F473CD22E0AF6330052964B /* projServeLeaps.app */;
+			productReference = 5F473CD22E0AF6330052964B /* LEAPStats.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -172,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5F473CCD2E0AF6330052964B /* Build configuration list for PBXProject "projServeLeaps" */;
+			buildConfigurationList = 5F473CCD2E0AF6330052964B /* Build configuration list for PBXProject "LEAPStats" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -189,7 +189,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5F473CD12E0AF6330052964B /* projServeLeaps */,
+				5F473CD12E0AF6330052964B /* LEAPStats */,
 			);
 		};
 /* End PBXProject section */
@@ -396,7 +396,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5F473CCD2E0AF6330052964B /* Build configuration list for PBXProject "projServeLeaps" */ = {
+		5F473CCD2E0AF6330052964B /* Build configuration list for PBXProject "LEAPStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F473CDE2E0AF6360052964B /* Debug */,
@@ -405,7 +405,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5F473CE02E0AF6360052964B /* Build configuration list for PBXNativeTarget "projServeLeaps" */ = {
+		5F473CE02E0AF6360052964B /* Build configuration list for PBXNativeTarget "LEAPStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5F473CE12E0AF6360052964B /* Debug */,
