@@ -12,7 +12,7 @@ struct HomeView: View {
     @EnvironmentObject var service: ServiceData
     @EnvironmentObject var leadership: LeadershipData
     @EnvironmentObject var participation: ParticipationData
-    @EnvironmentObject var achievement: AchievementsData
+    @EnvironmentObject var achievements: AchievementsData
     @EnvironmentObject var user: UserData
     @State var AttainmentColor: Color = .red.opacity(0.5)
     @EnvironmentObject var userManager: UserManager
@@ -20,14 +20,12 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                // Top bar
-                let spacingFactor: CGFloat = 1.23 // USE THIS TO CHANGE THE SPACING OF THE HEXAGONS
+                let spacingFactor: CGFloat = 1.23
                 let dx: CGFloat = 90 * spacingFactor
                 let dyShort: CGFloat = 52 * spacingFactor
                 let dyLong: CGFloat = 104 * spacingFactor
                 
                 ZStack {
-                    // Center Hexagon
                     ZStack {
                         Hexagon()
                             .fill(AttainmentColor)
@@ -56,29 +54,28 @@ struct HomeView: View {
                     .offset(x: 0, y: -dyLong)
                     
                     // Top-right
-                    HexagonButton(title: "Leadership: \(leadership.currentLeadershipPosition)", icon: nil, color: Color(red: 0.012, green: 0.427, blue: 0.612), textColor: .white) {
+                    HexagonButton(title: " \(leadership.currentLeadershipPosition)", icon: nil, color: Color(red: 0.012, green: 0.427, blue: 0.612), textColor: .white) {
                         LeadershipView()
                     }
                     .offset(x: dx, y: -dyShort)
                     
                     // Bottom-right
-                    HexagonButton(title: "Achieved: \(achievement.name)", icon: nil, color: Color(red: 0.8, green: 0.941, blue: 1), textColor: .black) {
+                    HexagonButton(title: "\(achievements.achievementCount) awards", icon: nil, color: Color(red: 0.8, green: 0.941, blue: 1), textColor: .black) {
                         AchievementsView()
                     }
                     .offset(x: dx, y: dyShort)
                     
                     // Bottom
-                    HexagonButton(title: "Service: \n\(service.total_hours) hours", icon: nil, color: Color(red: 0.8, green: 0.941, blue: 1), textColor: .black) {
+                    HexagonButton(title: " \(service.total_hours) hours", icon: nil, color: Color(red: 0.8, green: 0.941, blue: 1), textColor: .black) {
                         ServiceView()
                     }
                     .offset(x: -dx, y: -dyShort)
                     
                     // Bottom-left
-                    HexagonButton(title: "Attendance: \n\(participation.currentPercentage)%", icon: nil, color: Color(red: 0.012, green: 0.427, blue: 0.612), textColor: .white) {
-                        ParticipationHourView()
+                    HexagonButton(title: "\(participation.attendance)%\nAttendance", icon: nil, color: Color(red: 0.012, green: 0.427, blue: 0.612), textColor: .white) {
+                        ParticipationView()
                     }
                     .offset(x: -dx, y: dyShort)
-                    .disabled(true)
                     
                     // Top-left
                     HexagonButton(
@@ -114,13 +111,13 @@ struct HomeView: View {
                     leadership: leadership,
                     service: service,
                     participation: participation,
-                    achievements: achievement
+                    achievements: achievements
                 )
                 user.state = user.attainment(
                     leadership: leadership,
                     service: service,
                     participation: participation,
-                    achievements: achievement
+                    achievements: achievements
                 )
                 switch user.state {
                 case "Excellent":

@@ -17,7 +17,7 @@ extension Color {
 }
 
 struct ProfileView: View {
-    @EnvironmentObject var userdata: UserData
+    @EnvironmentObject var user: UserData
     @State private var showLogoutAlert = false
     @EnvironmentObject var userManager: UserManager
 
@@ -25,7 +25,6 @@ struct ProfileView: View {
     let cca = ["My CCA", "ARC", "Astronomy", "Media", "Robotics", "SYFC", "Drama", "Guitar", "Show choir", "Dance", "Athletics", "Badminton", "Basketball", "Fencing", "Floorball", "Football", "Taekwondo", "Scouts"]
     
     @State private var isPresentedPopUp: Bool = false
-    @State private var selectedImageData: Data? = nil
 
     func BackColorHouse(for house: String) -> Color {
         switch house {
@@ -58,23 +57,18 @@ struct ProfileView: View {
             ScrollView {
                 VStack {
                     Spacer()
-                    ImagePickerView(selectedImageData: $userdata.profileImageData)
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 200, height: 100)
-                    Spacer()
-                    
-                    Text(userdata.name)
+                    Text(user.name)
                         .font(.title)
                         .fontWeight(.bold)
                     
-                    Text("Batch of \(userdata.year, format: .number.grouping(.never))")
+                    Text("Batch of \(user.year, format: .number.grouping(.never))")
                         .font(.title2)
                     
                     Spacer()
                     
-                    ProfileHexagonView(title: userdata.house, color: BackColorHouse(for: userdata.house))
+                    ProfileHexagonView(title: user.house, color: BackColorHouse(for: user.house))
                     
-                    Picker("house", selection: $userdata.house) {
+                    Picker("house", selection: $user.house) {
                         ForEach(house, id: \.self) { houseName in
                             Text(houseName)
                                 .foregroundStyle(.white)
@@ -84,14 +78,14 @@ struct ProfileView: View {
                     .padding(5)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(BackColorHouse(for: userdata.house))
+                            .fill(BackColorHouse(for: user.house))
                     )
-                    .animation(.easeInOut, value: userdata.house)
+                    .animation(.easeInOut, value: user.house)
                     
                     Spacer()
-                    ProfileHexagonView(title: userdata.cca, color: BackColorCCA(for: userdata.cca))
+                    ProfileHexagonView(title: user.cca, color: BackColorCCA(for: user.cca))
                     
-                    Picker("cca", selection: $userdata.cca) {
+                    Picker("cca", selection: $user.cca) {
                         ForEach(cca, id: \.self) { cca in
                             Text(cca)
                         }
@@ -99,7 +93,7 @@ struct ProfileView: View {
                     .tint(.white)
                     .padding(5)
                     .background(RoundedRectangle(cornerRadius: 12))
-                    .foregroundColor(BackColorCCA(for: userdata.cca))
+                    .foregroundColor(BackColorCCA(for: user.cca))
                     .padding(.bottom, 20)
                     
                     Button(role: .destructive) {
@@ -130,7 +124,7 @@ struct ProfileView: View {
                     }
                     .foregroundColor(.black)
                     .sheet(isPresented: $isPresentedPopUp) {
-                        EditView(userData: userdata, selectedImageData: $userdata.profileImageData)
+                        EditView(userData: user)
                     }
                 }
             }
@@ -139,63 +133,23 @@ struct ProfileView: View {
     }
 }
 
-
-struct ImagePickerView: View {
-    @State private var selectedImage: PhotosPickerItem? = nil
-    @Binding var selectedImageData: Data?
-    var body: some View {
-        NavigationStack {
-            PhotosPicker(selection: $selectedImage, label: {
-                if let selectedImageData, let uiImage = UIImage(data: selectedImageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .frame(width: 120, height: 120)
-                        .aspectRatio(contentMode: .fill)
-                        .clipShape(Circle())
-                } else {
-                    Image(systemName: "photo.fill")
-                        .resizable()
-                        .frame(width: 50, height: 40)
-                        .foregroundColor(.darkBlue1)
-                }
-            })
-            .onChange(of: selectedImage){ newItem in
-                Task {
-                    if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                        selectedImageData = data
-                    }
-                }
-            }
-        }
-        .padding()
-    }
-}
-
 struct EditView: View {
     @ObservedObject var userData: UserData
-    @Binding var selectedImageData: Data?
-    @State private var showLogoutAlert = false
     @EnvironmentObject var userManager: UserManager
-    
+    @Environment(\.dismiss) var dismiss
+
     let currentYear = Calendar.current.component(.year, from: Date())
-    
+
     var body: some View {
         NavigationStack {
             List {
-                HStack {
-                    Text("My profile pic")
-                        .bold()
-                    ImagePickerView(selectedImageData: $selectedImageData)
-                        .frame(width: 120, height: 120)
-                }
-                
                 HStack {
                     Text("My Name")
                     TextField("Name", text: $userData.name)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width: 150, height: 20)
                 }
-                
+
                 HStack {
                     Text("Year I joined SST")
                     Picker("My Sec 1 year", selection: $userData.year) {
@@ -206,33 +160,26 @@ struct EditView: View {
                     .pickerStyle(.wheel)
                     .frame(height: 80)
                 }
-                
-                // Logout Button
-                Button(role: .destructive) {
-                    showLogoutAlert = true
+
+                Button {
+                    dismiss() // closes the sheet
                 } label: {
-                    Text("Logout")
+                    Text("Update")
                         .bold()
-                        .foregroundColor(.red)
+                        .foregroundColor(.white)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color(.systemGray6))
+                        .background(Color(.darkBlue1))
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
-                .alert("Are you sure you want to logout?", isPresented: $showLogoutAlert) {
-                    Button("Cancel", role: .cancel) {}
-                    Button("Logout", role: .destructive) {
-                        userManager.logout()
-                        
-                    }
-                }
             }
             .navigationTitle("Edit")
         }
         .presentationDetents([.height(400)])
     }
 }
+
 
 struct HexagonProfile: Shape {
     static let aspectRatio: CGFloat = 1

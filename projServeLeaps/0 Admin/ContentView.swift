@@ -19,19 +19,10 @@ struct ContentView: View {
                 HomeView()
             }
             
-            Tab("Enrichment", systemImage: "graduationcap") {
-                EnrichmentView()
-            }
-            
-            Tab("Info", systemImage: "list.bullet.clipboard") {
-                InfoView()
-            }
-            
-            Tab("Notification", systemImage: "bell") {
-                NotificationView()
+            Tab("App Info", systemImage: "info.circle") {
+                appInfoView()
             }
         }
-        .navigationBarBackButtonHidden()
     }
 }
 

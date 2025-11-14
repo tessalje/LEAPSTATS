@@ -210,6 +210,11 @@ struct ProfileHexagonView: View {
     }
 }
 
-
-
-
+struct HexagonFrontShape: View{
+    var body: some View{
+        Hexagon()
+            .fill(Color(.lightblue))
+            .frame(width: 180, height: 180)
+            .shadow(radius: 4)
+    }
+}
