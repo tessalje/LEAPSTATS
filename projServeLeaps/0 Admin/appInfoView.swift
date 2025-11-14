@@ -45,7 +45,7 @@ struct appInfoView: View {
                     
                     HStack{
                         VStack(alignment: .leading, spacing: 2){
-                            Text("Gong Xi Yue")
+                            Text("Xiyue Gong")
                                 .font(.title3)
                             Text("Chief Design Officer")
                                 .foregroundStyle(Color(.gray))
