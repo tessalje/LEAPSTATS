@@ -185,7 +185,7 @@ class LeadershipData: ObservableObject {
         }
     }
     
-    static let allCategories = ["ACE Board", "PSB Board", "SC Board", "DC Board", "House/SNW", "Projects Board", "Others"]
+    static let allCategories = ["ACE Board", "PSB Board", "SC Board", "DC Board", "House/SNW", "Projects Board", "Others", "ccaOrtdp" ]
     
     // All your static arrays remain the same...
     static let levelOneArray = [
@@ -287,6 +287,11 @@ class LeadershipData: ObservableObject {
     
     static let othersArray = [
         "NYAA Bronze", "NYAA Silver", "Class Chairperson", "Class Vice-Chairperson", "Class Exco", "Completed 2 modules on leadership"
+    ]
+    
+    static let ccaOrtdp = [
+        "CCA Chairperson",
+        "CCA Vice-Chairperson"
     ]
     
     deinit {

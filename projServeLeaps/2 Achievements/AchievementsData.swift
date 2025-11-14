@@ -61,6 +61,10 @@ class AchievementsData: ObservableObject {
             }
     }
     
+    var achievementCount: Int {
+        return hexes.count
+    }
+    
     private func computeLevel(for representation: String) -> String {
         switch representation {
         case "National (SG/MOE/UG HQ)": return "5"
