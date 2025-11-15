@@ -17,7 +17,7 @@ class UserManager: ObservableObject {
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
 
-    @Published var currentUserID: String? = nil
+    @Published var currentUserID: String? = "My Name"
     @Published var currentUserEmail: String? = nil
     @Published var currentUserName: String? = nil
     @Published var isLoggedIn: Bool = false
@@ -86,7 +86,6 @@ class UserManager: ObservableObject {
 }
 
 
-// LOGIN VIEW
 struct LoginView: View {
     @EnvironmentObject var userManager: UserManager
     @EnvironmentObject var service: ServiceData
@@ -105,25 +104,18 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 30) {
-                // App Icon CHANGE TO THE ACTUAL LOGO
-                Image(systemName: "figure.stairs")
+                Image("icon")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
                     .padding(.top, 50)
-                    .foregroundStyle(MeshGradient(width: 2, height: 2, points:
-                                                    [[0, 0], [1, 0],
-                                                     [0, 1], [1, 1]],
-                                                  colors: [
-                                                    .lightblue, .blue,
-                                                    .blue, .darkerBlue1]))
+                    .frame(width: 180, height: 180)
+
 
                 // TITLE AND STUFF
                 VStack(spacing: 4) {
                     Text("LEAPSTATS")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .fontDesign(.rounded)
                         .foregroundColor(.primary)
 
                     Text("Leap to success")
@@ -132,7 +124,6 @@ struct LoginView: View {
                         .fontDesign(.monospaced)
                 }
                 
-                //TEXTFIELDS FOR EMAIL AND PASSWORD
                 TextField("Email", text: $email)
                     .keyboardType(.emailAddress)
                     .textInputAutocapitalization(.never)
@@ -141,7 +132,6 @@ struct LoginView: View {
                     .background(.lightGrey2)
                     .cornerRadius(12)
                 
-                // BASICALLY IT WILL BE THE DOTS THING UNLESSS ITS TOGGLED TO SHOW
                 ZStack {
                     if isSecure {
                         SecureField("Password", text: $password)
@@ -186,12 +176,7 @@ struct LoginView: View {
                 }
                 .frame(width: 340, height: 55)
                 .foregroundColor(.white)
-                .background(
-                    LinearGradient(
-                        gradient: .init(colors: [Color.blue, Color.lightblue]),
-                        startPoint: .init(x: 0.9, y: 0.66),
-                        endPoint: .init(x: 0, y: -0.33)
-                    ))
+                .background(Color(.darkBlue1))
                 .clipShape(RoundedRectangle(cornerRadius: 15))
 
                 if let error = loginError {
@@ -200,7 +185,6 @@ struct LoginView: View {
                         .font(.caption)
                 }
 
-                // Navigation to Sign Up (unchanged)
                 HStack {
                     Text("Don't have an account?")
                         .foregroundColor(.secondary)
@@ -225,10 +209,5 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
-        .environmentObject(LeadershipData())
-        .environmentObject(ServiceData())
-        .environmentObject(ParticipationData())
-        .environmentObject(AchievementsData())
-        .environmentObject(UserData())
         .environmentObject(UserManager.shared)
 }

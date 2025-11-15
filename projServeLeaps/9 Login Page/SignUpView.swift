@@ -82,12 +82,7 @@ struct SignUpView: View {
                 }
                 .frame(width: 340, height: 55)
                 .foregroundColor(.white)
-                .background(
-                    LinearGradient(
-                        gradient: .init(colors: [Color.blue, Color.lightblue]),
-                        startPoint: .init(x: 0.9, y: 0.66),
-                        endPoint: .init(x: 0, y: -0.33)
-                    ))
+                .background(Color(.darkBlue1))
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 
                 if let error = signupError {
@@ -104,7 +99,6 @@ struct SignUpView: View {
             .padding(.top)
             .background(.background)
             .preferredColorScheme(.light)
-            //NAVIGATE UPON SIGN-UP
             .navigationDestination(isPresented: $isSignedUp) {
                             HomeView()
             }
