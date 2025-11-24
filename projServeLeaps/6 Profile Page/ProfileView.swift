@@ -71,7 +71,6 @@ struct ProfileView: View {
                     Picker("house", selection: $user.house) {
                         ForEach(house, id: \.self) { houseName in
                             Text(houseName)
-                                .foregroundStyle(.white)
                         }
                     }
                     .tint(.white)
@@ -83,17 +82,21 @@ struct ProfileView: View {
                     .animation(.easeInOut, value: user.house)
                     
                     Spacer()
+                    
                     ProfileHexagonView(title: user.cca, color: BackColorCCA(for: user.cca))
                     
                     Picker("cca", selection: $user.cca) {
-                        ForEach(cca, id: \.self) { cca in
-                            Text(cca)
+                        ForEach(cca, id: \.self) { ccaName in
+                            Text(ccaName)
                         }
                     }
                     .tint(.white)
                     .padding(5)
-                    .background(RoundedRectangle(cornerRadius: 12))
-                    .foregroundColor(BackColorCCA(for: user.cca))
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(BackColorCCA(for: user.cca))
+                    )
+                    .animation(.easeInOut, value: user.cca)
                     .padding(.bottom, 20)
                     
                     Button(role: .destructive) {
@@ -112,7 +115,6 @@ struct ProfileView: View {
                         Button("Cancel", role: .cancel) {}
                         Button("Logout", role: .destructive) {
                             userManager.logout()
-                            
                         }
                     }
                 }
@@ -145,9 +147,11 @@ struct EditView: View {
             List {
                 HStack {
                     Text("My Name")
+                    Spacer()
                     TextField("Name", text: $userData.name)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: 150, height: 20)
+                        .frame(width: 150)
+                        .multilineTextAlignment(.trailing)
                 }
 
                 HStack {
@@ -162,7 +166,7 @@ struct EditView: View {
                 }
 
                 Button {
-                    dismiss() // closes the sheet
+                    dismiss()
                 } label: {
                     Text("Update")
                         .bold()
@@ -185,27 +189,27 @@ struct HexagonProfile: Shape {
     static let aspectRatio: CGFloat = 1
 
     func path(in rect: CGRect) -> Path {
-            var path = Path()
-            
-            let center = CGPoint(x: rect.midX, y: rect.midY)
-            let width = min(rect.width, rect.height * Self.aspectRatio)
-            let size = width / 1.2
-            let corners = (0..<6)
-                .map {
-                    let angle = -CGFloat.pi / 3 * CGFloat($0)
-                    let dx = size * cos(angle)
-                    let dy = size * sin(angle)
-                    
-                    return CGPoint(x: center.x + dx, y: center.y + dy)
-                }
-            path.move(to: corners[0])
-            corners[1..<6].forEach { point in
-                path.addLine(to: point)
+        var path = Path()
+        
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        let width = min(rect.width, rect.height * Self.aspectRatio)
+        let size = width / 1.2
+        let corners = (0..<6)
+            .map {
+                let angle = -CGFloat.pi / 3 * CGFloat($0)
+                let dx = size * cos(angle)
+                let dy = size * sin(angle)
+                
+                return CGPoint(x: center.x + dx, y: center.y + dy)
             }
-            
-            path.closeSubpath()
-            
-            return path
+        path.move(to: corners[0])
+        corners[1..<6].forEach { point in
+            path.addLine(to: point)
+        }
+        
+        path.closeSubpath()
+        
+        return path
     }
 }
 
@@ -213,4 +217,3 @@ struct HexagonProfile: Shape {
     ProfileView()
         .environmentObject(UserData())
 }
-
