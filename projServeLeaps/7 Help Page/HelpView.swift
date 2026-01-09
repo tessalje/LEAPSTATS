@@ -9,10 +9,11 @@ import SwiftUI
 struct HelpView: View {
     let images = ["image1", "image2", "image3", "image4", "image5"]
     @State private var currentIndex = 0
+    @AppStorage("currentView") var currentView = 1
     
     var body: some View {
         NavigationStack {
-            Text("GO TO TUTROIAL !!")
+            MainTutorialView()
         }
     }
 }

@@ -131,6 +131,7 @@ struct HomeView: View {
                     AttainmentColor = Color.red.opacity(0.5)
                 }
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }

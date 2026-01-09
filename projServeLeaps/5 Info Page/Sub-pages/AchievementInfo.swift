@@ -7,18 +7,13 @@
 import SwiftUI
 struct AchievementInfoView: View {
     var body: some View {
-        ZStack {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    Text("What is Achivement?")
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
                     Text("Achievement levels are for students accomplishments in CCA outside classrooms. Opportunities to representant schools are important experiences and better caters to their interests and talents.")
                         .padding(10)
-                        .frame(width: 380, height: 130)
-                        .background(.white.opacity(0.6))
+                        .frame(width: 380, height: 120)
+                        .background(Color(red: 0.8, green: 0.941, blue: 1).opacity(0.5))
                         .cornerRadius(10)
                     
                     ForEach(achievementLevels, id: \.self) { level in

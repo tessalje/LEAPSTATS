@@ -173,19 +173,20 @@ class LeadershipData: ObservableObject {
     
     static func getPositionsForCategory(_ category: String) -> [String] {
         switch category {
-        case "ACE Board": return aceArray
-        case "PSB Board": return psbArray
-        case "SC Board": return scArray
-        case "DC Board": return dcArray
+        case "ACE": return aceArray
+        case "PSB": return psbArray
+        case "SC": return scArray
+        case "DC": return dcArray
         case "House/SNW": return houseArray
-        case "CCA Leaders": return ccaArray
-        case "Projects Board": return projectArray
+        case "CCA": return ccaArray
+        case "SST Inc": return incArray
+        case "Projects": return projectArray
         case "Others": return othersArray
         default: return []
         }
     }
     
-    static let allCategories = ["ACE Board", "PSB Board", "SC Board", "DC Board", "House/SNW", "Projects Board", "Others", "ccaOrtdp" ]
+    static let allCategories = ["ACE", "PSB", "SC", "DC", "House/SNW", "CCA", "SST Inc", "Projects", "Others"]
     
     // All your static arrays remain the same...
     static let levelOneArray = [
@@ -233,6 +234,7 @@ class LeadershipData: ObservableObject {
         "Senior CCA Exco",
         "Chairperson for school-wide events",
         "Vice-Chairperson for school-wide events",
+        "React CTO", "Kotlin CTO", "Swift CTO", "CDO", "CMO"
     ]
     
     static let levelFiveArray = [
@@ -249,7 +251,8 @@ class LeadershipData: ObservableObject {
         "DC President",
         "DC Vice-President",
         "CCA Chairperson",
-        "CCA Vice-Chairperson"
+        "CCA Vice-Chairperson",
+        "Inc President", "Inc Vice-President"
     ]
     
     // Category arrays
@@ -285,13 +288,12 @@ class LeadershipData: ObservableObject {
         "Chairperson for SL projects", "Vice-Chairperson for SL projects", "Committee for SL"
     ]
     
-    static let othersArray = [
-        "NYAA Bronze", "NYAA Silver", "Class Chairperson", "Class Vice-Chairperson", "Class Exco", "Completed 2 modules on leadership"
+    static let incArray = [
+        "Inc President", "Inc Vice-President", "React CTO", "Kotlin CTO", "Swift CTO", "CDO", "CMO"
     ]
     
-    static let ccaOrtdp = [
-        "CCA Chairperson",
-        "CCA Vice-Chairperson"
+    static let othersArray = [
+        "NYAA Bronze", "NYAA Silver", "Class Chairperson", "Class Vice-Chairperson", "Class Exco", "Completed 2 modules on leadership"
     ]
     
     deinit {

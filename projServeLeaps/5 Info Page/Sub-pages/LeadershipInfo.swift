@@ -4,28 +4,26 @@
 //
 //  Created by Tessa on 8/6/25.
 //
+
 import SwiftUI
 struct LeadershipInfoView: View {
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                Text("What is Leadership?")
-                    .font(.title2)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Text("Leadership levels are for students who develop leadership skills (e.g. take charge of their growth, work in teams, and serve others). This includes boards, CCA, lead in a project, NYAA.")
-                    .padding(10)
-                    .frame(width: 380, height: 120)
-                    .background(.white.opacity(0.6))
-                    .cornerRadius(10)
-                
-                ForEach(leadershipLevels, id: \.self) { level in
-                    LevelCard(level: level)
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    Text("Leadership levels are for students who develop leadership skills (e.g. take charge of their growth, work in teams, and serve others). This includes boards, CCA, lead in a project, NYAA.")
+                        .padding(10)
+                        .frame(width: 380, height: 120)
+                        .background(.darkBlue1.opacity(0.2))
+                        .cornerRadius(10)
+                    
+                    ForEach(leadershipLevels, id: \.self) { level in
+                        LevelCard(level: level)
+                    }
                 }
+                .padding()
             }
             .navigationTitle("Leadership")
-            .padding()
         }
     }
 }

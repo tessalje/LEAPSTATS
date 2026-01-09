@@ -9,18 +9,21 @@ import SwiftUI
 struct ServiceInfoView: View {
     var body: some View {
         NavigationStack {
-            VStack{
-                Text("Service hours are for students who contribute to the community. Every student has to contribute at least 6h per year. Students will get hours for planning, service and reflection in a VIA/SIP/SL project.")
-                    .padding(10)
-                    .frame(width: 380, height: 130)
-                    .background(.white.opacity(0.6))
-                    .cornerRadius(10)
-            GroupBox("HEHHE"){
-                Text("HI")
+            ScrollView {
+                VStack(spacing: 16) {
+                    Text("Service hours are your time spent contributing to the community. Every student has to contribute at least 6h per year. Students will get hours for planning, service and reflection in a VIA/SIP/SL project.")
+                        .padding(10)
+                        .frame(width: 380, height: 120)
+                        .background(Color(red: 0.012, green: 0.427, blue: 0.612).opacity(0.5))
+                        .cornerRadius(10)
+                    
+                    ForEach(serviceLevels, id: \.self) { level in
+                        LevelCard(level: level)
+                    }
+                }
+                .padding()
             }
-        }
-        .navigationTitle("Service")
-            
+            .navigationTitle("Service")
         }
     }
 }

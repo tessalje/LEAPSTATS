@@ -152,7 +152,7 @@ class AchievementsData: ObservableObject {
         } else if intraCount >= 1 {
             currentHighestLevel = "1"
         } else {
-            currentHighestLevel = "0"
+            currentHighestLevel = "0" 
         }
     }
     deinit {

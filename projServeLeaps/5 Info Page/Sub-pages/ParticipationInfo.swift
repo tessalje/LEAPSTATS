@@ -7,18 +7,13 @@
 import SwiftUI
 struct ParticipationInfoView: View {
     var body: some View {
-        ZStack {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    Text("What is Participation?")
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
                     Text("Participation is for students participation in CCA. It is based on the number of years of participation, their conduct and active contribution.")
                         .padding(10)
                         .frame(width: 380, height: 120)
-                        .background(.gray.opacity(0.2))
+                        .background(.darkerBlue1.opacity(0.5))
                         .cornerRadius(10)
                     
                     ForEach(participationLevels, id: \.self) { level in

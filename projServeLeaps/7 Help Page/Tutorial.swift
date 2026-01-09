@@ -9,6 +9,7 @@ import SwiftUI
 struct TutorialView: View {
     let images = ["image1", "image2", "image3", "image4", "image5"]
     @State private var currentIndex = 0
+    @AppStorage("currentView") var currentView = 1
     
     var body: some View {
         ZStack {
@@ -25,35 +26,51 @@ struct TutorialView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-            
-
-                        
                         
             if currentIndex == images.count - 1 {
                 VStack {
+                    Text("You're All Done")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue.opacity(0.8))
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 40)
                     Spacer()
-                    Button(action: {
-                        print("All done tapped!")
-                        // Add your action here, e.g., dismiss the view
-                    }) {
-                        Text("You're All Done")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue.opacity(0.8))
-                            .cornerRadius(10)
-                            .padding(.horizontal, 20)
-                            .padding(.bottom, 40)
-                    }
                 }
                 .transition(.opacity)
             }
         }
         .animation(.easeInOut, value: currentIndex)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: {
+                    currentView = 2
+                }) {
+                    Text("Exit")
+                        .font(.title2)
+                }
+            }
+        }
+        .navigationBarBackButtonHidden()
+        
+    }
+}
+
+struct MainTutorialView: View {
+    @AppStorage("currentView") var currentView = 1
+    var body: some View {
+        if currentView == 1 {
+            TutorialView()
+        } else if currentView == 2 {
+            HomeView()
+        }
+        
     }
 }
 
 #Preview {
-    TutorialView()
+    MainTutorialView()
 }
