@@ -67,7 +67,7 @@ class AchievementsData: ObservableObject {
     
     private func computeLevel(for representation: String) -> String {
         switch representation {
-        case "National (SG/MOE/UG HQ)": return "5"
+        case "National (SG/MOE)": return "5"
         case "School/External Organisation": return "3"
         case "Intra-school": return "1"
         default: return "0"
@@ -129,7 +129,7 @@ class AchievementsData: ObservableObject {
         var externalYears: Set<String> = []
         for achievement in hexes {
             switch achievement.representation {
-            case "National (SG/MOE/UG HQ)":
+            case "National (SG/MOE)":
                 nationalCount += 1
                 nationalYears.insert(achievement.year)
             case "School/External Organisation":

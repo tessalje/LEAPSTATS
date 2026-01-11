@@ -59,7 +59,6 @@ class UserData: ObservableObject, Identifiable {
     }
     
     @objc private func handleUserDidChange() {
-        resetToDefaults()
         
         listener?.remove()
         

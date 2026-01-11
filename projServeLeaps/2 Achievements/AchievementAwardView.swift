@@ -21,7 +21,7 @@ struct AchievementsAwardsView: View {
     var representation_level = [
         "Intra-school",
         "School/External Organisation",
-        "National (SG/MOE/UG HQ)"
+        "National (SG/MOE)"
     ]
     
     var years = [

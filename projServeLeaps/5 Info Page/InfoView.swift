@@ -1,4 +1,3 @@
-//
 //  InfoView.swift
 //  projServe
 //
