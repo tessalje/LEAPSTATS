@@ -32,6 +32,8 @@ struct ParticipationHoursView: View {
                             .font(.title3)
                             .fontWeight(.medium)
                             .foregroundColor(.primary)
+                        
+                        Link("Attendance sheet", destination: URL(string: "https://docs.google.com/spreadsheets/d/1R7JwhmOwkEVUNPzPTGzedaiZALz62xAHmDt3JsHDR0M/edit?gid=0#gid=0")!)
                     }
                 }
                 if participation.googleSheetsService.isLoading {
